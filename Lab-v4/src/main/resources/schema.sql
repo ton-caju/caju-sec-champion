@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS users (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(100) NOT NULL,
+	password VARCHAR(200) NOT NULL,
+	about VARCHAR(500),
+	cpf VARCHAR(14) NOT NULL,
+	telefone VARCHAR(15),
+	endereco VARCHAR(200),
+	email VARCHAR(100),
+	data_nascimento DATE
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+	id SERIAL PRIMARY KEY,
+	author VARCHAR(100) NOT NULL,
+	content VARCHAR(2000) NOT NULL
+);

@@ -1,0 +1,31 @@
+INSERT INTO users(username, password, about, cpf, telefone, endereco, email, data_nascimento) VALUES
+	('admin', 'admin123', 'Administrador do sistema', '123.456.789-00', '(11) 99999-9999', 'Rua das Flores, 123 - São Paulo/SP', 'admin@sistema.com', '1985-03-15'),
+	('alice', 'alice123', 'Usuária padrão', '987.654.321-00', '(21) 88888-8888', 'Av. Copacabana, 456 - Rio de Janeiro/RJ', 'alice@email.com', '1990-07-22'),
+	('bob', 'bob123', 'Usuário curioso', '456.789.123-00', '(31) 77777-7777', 'Rua da Liberdade, 789 - Belo Horizonte/MG', 'bob@curioso.com', '1988-11-08'),
+	('maria.silva', 'maria123', 'Desenvolvedora de software', '111.222.333-44', '(11) 99999-1111', 'Rua Augusta, 100 - São Paulo/SP', 'maria.silva@tech.com', '1992-05-14'),
+	('joao.santos', 'joao123', 'Analista de sistemas', '222.333.444-55', '(21) 88888-2222', 'Av. Paulista, 200 - São Paulo/SP', 'joao.santos@empresa.com', '1987-09-30'),
+	('ana.costa', 'ana123', 'Designer gráfica', '333.444.555-66', '(31) 77777-3333', 'Rua das Palmeiras, 300 - Belo Horizonte/MG', 'ana.costa@design.com', '1995-12-03'),
+	('carlos.oliveira', 'carlos123', 'Gerente de projetos', '444.555.666-77', '(11) 99999-4444', 'Rua Oscar Freire, 400 - São Paulo/SP', 'carlos.oliveira@projetos.com', '1983-01-18'),
+	('fernanda.lima', 'fernanda123', 'Consultora de TI', '555.666.777-88', '(21) 88888-5555', 'Av. Atlântica, 500 - Rio de Janeiro/RJ', 'fernanda.lima@consultoria.com', '1991-08-25'),
+	('rafael.mendes', 'rafael123', 'Arquiteto de software', '666.777.888-99', '(31) 77777-6666', 'Rua da Bahia, 600 - Belo Horizonte/MG', 'rafael.mendes@arquitetura.com', '1989-04-12'),
+	('juliana.pereira', 'juliana123', 'Product Manager', '777.888.999-00', '(11) 99999-7777', 'Rua Haddock Lobo, 700 - São Paulo/SP', 'juliana.pereira@product.com', '1993-10-07'),
+	('marcos.rodrigues', 'marcos123', 'DevOps Engineer', '888.999.000-11', '(21) 88888-8888', 'Rua Barata Ribeiro, 800 - Rio de Janeiro/RJ', 'marcos.rodrigues@devops.com', '1986-06-20'),
+	('patricia.alves', 'patricia123', 'UX Designer', '999.000.111-22', '(31) 77777-9999', 'Rua Pernambuco, 900 - Belo Horizonte/MG', 'patricia.alves@ux.com', '1994-02-28'),
+	('lucas.ferreira', 'lucas123', 'Full Stack Developer', '000.111.222-33', '(11) 99999-0000', 'Rua Bela Cintra, 1000 - São Paulo/SP', 'lucas.ferreira@fullstack.com', '1990-12-15'),
+	('camila.rocha', 'camila123', 'Data Scientist', '111.222.333-44', '(21) 88888-1111', 'Av. Vieira Souto, 1100 - Rio de Janeiro/RJ', 'camila.rocha@data.com', '1996-03-09'),
+	('andre.martins', 'andre123', 'Tech Lead', '222.333.444-55', '(31) 77777-2222', 'Rua da Consolação, 1200 - São Paulo/SP', 'andre.martins@techlead.com', '1984-07-04'),
+	('beatriz.nunes', 'beatriz123', 'QA Engineer', '333.444.555-66', '(11) 99999-3333', 'Rua dos Três Irmãos, 1300 - São Paulo/SP', 'beatriz.nunes@qa.com', '1992-11-21'),
+	('felipe.carvalho', 'felipe123', 'Mobile Developer', '444.555.666-77', '(21) 88888-4444', 'Rua das Laranjeiras, 1400 - Rio de Janeiro/RJ', 'felipe.carvalho@mobile.com', '1988-05-16'),
+	('larissa.moreira', 'larissa123', 'Scrum Master', '555.666.777-88', '(31) 77777-5555', 'Rua da Pampulha, 1500 - Belo Horizonte/MG', 'larissa.moreira@scrum.com', '1991-09-13'),
+	('gabriel.souza', 'gabriel123', 'Backend Developer', '666.777.888-99', '(11) 99999-6666', 'Rua dos Pinheiros, 1600 - São Paulo/SP', 'gabriel.souza@backend.com', '1987-01-26'),
+	('isabela.castro', 'isabela123', 'Frontend Developer', '777.888.999-00', '(21) 88888-7777', 'Rua do Catete, 1700 - Rio de Janeiro/RJ', 'isabela.castro@frontend.com', '1995-08-02'),
+	('thiago.barbosa', 'thiago123', 'Cloud Engineer', '888.999.000-11', '(31) 77777-8888', 'Rua da Savassi, 1800 - Belo Horizonte/MG', 'thiago.barbosa@cloud.com', '1989-12-19'),
+	('vanessa.dias', 'vanessa123', 'Business Analyst', '999.000.111-22', '(11) 99999-9999', 'Rua da Freguesia, 1900 - São Paulo/SP', 'vanessa.dias@business.com', '1993-04-11'),
+	('rodrigo.monteiro', 'rodrigo123', 'Security Engineer', '000.111.222-33', '(21) 88888-0000', 'Rua do Leblon, 2000 - Rio de Janeiro/RJ', 'rodrigo.monteiro@security.com', '1985-10-24'),
+	('amanda.ribeiro', 'amanda123', 'Marketing Digital', '111.222.333-44', '(31) 77777-1111', 'Rua da Contagem, 2100 - Belo Horizonte/MG', 'amanda.ribeiro@marketing.com', '1997-06-17'),
+	('bruno.goncalves', 'bruno123', 'Sales Manager', '222.333.444-55', '(11) 99999-2222', 'Rua da Mooca, 2200 - São Paulo/SP', 'bruno.goncalves@sales.com', '1982-08-29'),
+	('cristina.azevedo', 'cristina123', 'HR Specialist', '333.444.555-66', '(21) 88888-3333', 'Rua do Flamengo, 2300 - Rio de Janeiro/RJ', 'cristina.azevedo@hr.com', '1990-01-05');
+
+INSERT INTO posts(author, content) VALUES
+	('alice', 'Olá mundo!'),
+	('bob', 'Tudo bem?');

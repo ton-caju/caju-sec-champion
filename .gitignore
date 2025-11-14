@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+bff/logs/
+
+# Testing
+coverage/
+.nyc_output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Java/Kotlin (Lab-v4)
+Lab-v4/target/
+Lab-v4/.idea/
+Lab-v4/*.iml
+Lab-v4/.classpath
+Lab-v4/.project
+Lab-v4/.settings/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Redis
+dump.rdb
+
+# PM2
+.pm2/
+pm2.log
+
+# Secrets (keep only examples)
+*_secrets.json
+!Lab-v4/uploads/*_secrets.json
+
+# Keep .env.example files
+!.env.example
+!*/.env.example
