@@ -34,6 +34,10 @@ export const validateRecaptchaV3 = async (
           secret: RECAPTCHA_V3_SECRET_KEY,
           response: token,
         },
+        // Em desenvolvimento, aceitar certificados self-signed
+        httpsAgent: process.env.NODE_ENV === 'development'
+          ? new (require('https').Agent)({ rejectUnauthorized: false })
+          : undefined,
       }
     );
 
@@ -110,6 +114,10 @@ export const validateRecaptchaV2 = async (
           secret: RECAPTCHA_V2_SECRET_KEY,
           response: token,
         },
+        // Em desenvolvimento, aceitar certificados self-signed
+        httpsAgent: process.env.NODE_ENV === 'development'
+          ? new (require('https').Agent)({ rejectUnauthorized: false })
+          : undefined,
       }
     );
 

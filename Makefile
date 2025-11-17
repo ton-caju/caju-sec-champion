@@ -56,8 +56,12 @@ start: start-redis start-backend start-bff start-frontend ## Inicia todo o ambie
 
 start-redis: ## Inicia Redis (Docker)
 	@echo "$(YELLOW)→ Iniciando Redis...$(NC)"
-	@docker ps -q -f name=$(REDIS_CONTAINER) > /dev/null 2>&1 && echo "$(YELLOW)⚠ Redis já está rodando$(NC)" || \
-	(docker run -d --name $(REDIS_CONTAINER) -p 6379:6379 redis:7-alpine && echo "$(GREEN)✓ Redis iniciado$(NC)")
+	@if [ "$$(docker ps -q -f name=$(REDIS_CONTAINER))" ]; then \
+		echo "$(YELLOW)⚠ Redis já está rodando$(NC)"; \
+	else \
+		docker rm -f $(REDIS_CONTAINER) > /dev/null 2>&1 || true; \
+		docker run -d --name $(REDIS_CONTAINER) -p 6379:6379 redis:7-alpine > /dev/null && echo "$(GREEN)✓ Redis iniciado$(NC)"; \
+	fi
 
 start-backend: ## Inicia Backend Lab-v4 (Docker Compose)
 	@echo "$(YELLOW)→ Iniciando Backend Lab-v4...$(NC)"

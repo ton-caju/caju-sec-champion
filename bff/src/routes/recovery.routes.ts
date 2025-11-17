@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, type Router as RouterType } from 'express';
 import { initRecovery, validateAnswers, resetPassword } from '../controllers/recoveryController';
 import { getCsrfToken } from '../controllers/csrfController';
 import {
@@ -15,13 +15,13 @@ import {
 } from '../middleware/validation';
 import { csrfProtection } from '../middleware/csrf';
 
-const router = Router();
+const router: RouterType = Router();
 
 /**
  * GET /api/csrf-token
- * Obtém token CSRF (não protegido por CSRF obviamente)
+ * Obtém token CSRF (aplica middleware para gerar o token)
  */
-router.get('/csrf-token', getCsrfToken);
+router.get('/csrf-token', csrfProtection as any, getCsrfToken);
 
 /**
  * POST /api/recovery/init
@@ -40,7 +40,7 @@ router.post(
   '/recovery/init',
   ipRateLimiter,
   sessionRateLimiter,
-  csrfProtection,
+  csrfProtection as any,
   validarInicioRecuperacao,
   validateRecaptchaV3,
   cpfRateLimiter,
@@ -65,7 +65,7 @@ router.post(
   '/recovery/validate',
   ipRateLimiter,
   sessionRateLimiter,
-  csrfProtection,
+  csrfProtection as any,
   validarRespostas,
   validateRecaptchaV3,
   cpfRateLimiter,
@@ -87,7 +87,7 @@ router.post(
   '/recovery/reset-password',
   ipRateLimiter,
   sessionRateLimiter,
-  csrfProtection,
+  csrfProtection as any,
   validarResetSenha,
   resetPassword
 );

@@ -55,9 +55,9 @@ export const useRecovery = (): UseRecoveryReturn => {
         recaptcha_token: recaptchaToken,
       });
 
-      if (response.perguntas && response.perguntas.length > 0) {
+      if (response.questions && response.questions.length > 0) {
         setCpf(cpfValue);
-        setQuestions(response.perguntas);
+        setQuestions(response.questions);
         setAttempts(response.tentativas_restantes);
         setFailures(response.falhas);
         setRequireCaptchaV2(response.require_captcha_v2 || false);

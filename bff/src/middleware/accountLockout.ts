@@ -113,7 +113,7 @@ export const registerFailedAttempt = async (cpf: string) => {
         // await alertarEquipeSeguranca(cpf, failures);
       } else {
         // Bloqueio temporário
-        await redisClient.setex(
+        await redisClient.setEx(
           lockoutKey,
           tier.duration,
           new Date(Date.now() + tier.duration * 1000).toISOString()

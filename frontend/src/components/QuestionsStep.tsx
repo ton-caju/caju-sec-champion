@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReCaptchaV2 from './ReCaptchaV2';
+import ReCaptchaV3 from './ReCaptchaV3';
 import type { SecretQuestion } from '../types';
 
 interface QuestionsStepProps {
@@ -37,8 +38,13 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
   failures,
   requireCaptchaV2 = false,
 }) => {
+  const [recaptchaV3Token, setRecaptchaV3Token] = useState<string>('');
   const [recaptchaV2Token, setRecaptchaV2Token] = useState<string>('');
   const [showV2Captcha, setShowV2Captcha] = useState<boolean>(requireCaptchaV2);
+
+  const handleV3TokenReceived = useCallback((token: string) => {
+    setRecaptchaV3Token(token);
+  }, []);
 
   const questionsSchema = createQuestionsSchema(questions.length);
   type QuestionsFormData = z.infer<typeof questionsSchema>;
@@ -59,7 +65,13 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
       return;
     }
 
-    onSubmit(answers, recaptchaV2Token);
+    if (!recaptchaV3Token) {
+      alert('Aguarde a validação do reCAPTCHA');
+      return;
+    }
+
+    // Se v2 está ativo, usar token v2. Senão, usar token v3
+    onSubmit(answers, showV2Captcha ? recaptchaV2Token : recaptchaV3Token);
   };
 
   return (
@@ -111,6 +123,10 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
           </div>
         ))}
 
+        {/* reCAPTCHA v3 invisível (sempre ativo) */}
+        <ReCaptchaV3 onTokenReceived={handleV3TokenReceived} action="validate_answers" />
+
+        {/* reCAPTCHA v2 com desafio visual (apenas quando necessário) */}
         {showV2Captcha && (
           <div className="captcha-v2-wrapper">
             <p className="captcha-notice">
@@ -132,7 +148,7 @@ const QuestionsStep: React.FC<QuestionsStepProps> = ({
           </div>
         )}
 
-        <button type="submit" disabled={loading || (showV2Captcha && !recaptchaV2Token)} className="submit-button">
+        <button type="submit" disabled={loading || !recaptchaV3Token || (showV2Captcha && !recaptchaV2Token)} className="submit-button">
           {loading ? (
             <>
               <span className="spinner"></span>

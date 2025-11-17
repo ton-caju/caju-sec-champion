@@ -19,7 +19,7 @@ export const sessionConfig = session({
     secure: process.env.NODE_ENV === 'production', // HTTPS only em produção
     httpOnly: true, // Não acessível via JavaScript
     maxAge: parseInt(process.env.SESSION_MAX_AGE || '900000', 10), // 15 minutos
-    sameSite: 'strict', // Proteção CSRF adicional
+    sameSite: 'lax', // Permite cookies em navegação cross-site (localhost:3000 -> localhost:4000)
     domain: process.env.COOKIE_DOMAIN || undefined,
   },
 

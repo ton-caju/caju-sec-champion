@@ -9,7 +9,7 @@ import { rateLimitCounter } from '../utils/metrics';
 export const ipRateLimiter = rateLimit({
   store: new RedisStore({
     // @ts-ignore - RedisStore aceita client do redis v4
-    client: redisClient,
+    sendCommand: (...args: string[]) => redisClient.sendCommand(args),
     prefix: 'rl:ip:',
   }),
   windowMs: parseInt(process.env.RATE_LIMIT_IP_WINDOW_MS || '3600000', 10), // 1 hora
@@ -88,7 +88,7 @@ export const sessionRateLimiter = rateLimit({
   },
   store: new RedisStore({
     // @ts-ignore
-    client: redisClient,
+    sendCommand: (...args: string[]) => redisClient.sendCommand(args),
     prefix: 'rl:session:',
   }),
   message: {

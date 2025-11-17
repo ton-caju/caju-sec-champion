@@ -17,6 +17,9 @@ export interface InitRecoveryResponse {
   success: boolean;
   message: string;
   questions: SecretQuestion[];
+  tentativas_restantes?: number;
+  falhas?: number;
+  require_captcha_v2?: boolean;
 }
 
 // Payload para validar respostas
@@ -34,6 +37,10 @@ export interface ValidateAnswersResponse {
   reset_token?: string;
   attempts?: number;
   failures?: number;
+  error?: string;
+  tentativas_restantes?: number;
+  falhas?: number;
+  require_captcha_v2?: boolean;
 }
 
 // Payload para reset de senha
@@ -46,6 +53,7 @@ export interface ResetPasswordPayload {
 export interface ResetPasswordResponse {
   success: boolean;
   message: string;
+  error?: string;
 }
 
 // Erro da API

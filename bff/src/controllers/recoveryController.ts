@@ -62,7 +62,7 @@ export const initRecovery = async (
     };
 
     const sessionKey = `recovery:${req.sessionID}`;
-    await redisClient.setex(sessionKey, 15 * 60, JSON.stringify(recoverySession));
+    await redisClient.setEx(sessionKey, 15 * 60, JSON.stringify(recoverySession));
 
     logger.info('Sessão de recuperação iniciada', {
       cpf: cpfNormalized.substring(0, 3) + '***',
@@ -172,7 +172,7 @@ export const validateAnswers = async (
       };
 
       const tokenKey = `reset:${resetToken}`;
-      await redisClient.setex(tokenKey, 30 * 60, JSON.stringify(resetTokenData));
+      await redisClient.setEx(tokenKey, 30 * 60, JSON.stringify(resetTokenData));
 
       logger.info('✅ Recuperação bem-sucedida - Token gerado', {
         cpf: cpfNormalized.substring(0, 3) + '***',
@@ -193,7 +193,7 @@ export const validateAnswers = async (
       const { failures, tier } = await registerFailedAttempt(cpfNormalized);
 
       // Atualizar sessão com nova tentativa
-      await redisClient.setex(sessionKey, 15 * 60, JSON.stringify(recoverySession));
+      await redisClient.setEx(sessionKey, 15 * 60, JSON.stringify(recoverySession));
 
       logger.warn('❌ Tentativa de recuperação falhada', {
         cpf: cpfNormalized.substring(0, 3) + '***',

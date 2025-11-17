@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -51,6 +51,10 @@ interface CPFStepProps {
 const CPFStep: React.FC<CPFStepProps> = ({ onSubmit, loading, error }) => {
   const [recaptchaToken, setRecaptchaToken] = useState<string>('');
 
+  const handleTokenReceived = useCallback((token: string) => {
+    setRecaptchaToken(token);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -81,6 +85,7 @@ const CPFStep: React.FC<CPFStepProps> = ({ onSubmit, loading, error }) => {
       alert('Aguarde a validação do reCAPTCHA');
       return;
     }
+
     const cpfNormalized = data.cpf.replace(/\D/g, '');
     onSubmit(cpfNormalized, recaptchaToken);
   };
@@ -107,7 +112,7 @@ const CPFStep: React.FC<CPFStepProps> = ({ onSubmit, loading, error }) => {
           {errors.cpf && <span className="error-message">{errors.cpf.message}</span>}
         </div>
 
-        <ReCaptchaV3 onTokenReceived={setRecaptchaToken} action="init_recovery" />
+        <ReCaptchaV3 onTokenReceived={handleTokenReceived} action="init_recovery" />
 
         {error && (
           <div className="error-banner">

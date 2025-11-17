@@ -21,11 +21,12 @@ const ReCaptchaV3: React.FC<ReCaptchaV3Props> = ({ onTokenReceived, action }) =>
           window.grecaptcha
             .execute(siteKey, { action })
             .then((token: string) => {
-              console.log('✅ reCAPTCHA v3 token obtido');
-              onTokenReceived(token);
+              if (token) {
+                onTokenReceived(token);
+              }
             })
             .catch((error: Error) => {
-              console.error('❌ Erro ao obter token reCAPTCHA v3:', error);
+              console.error('Erro ao obter token reCAPTCHA:', error);
             });
         });
       } else {
