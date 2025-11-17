@@ -22,6 +22,10 @@ export const initRecovery = async (
     const { cpf } = req.body;
     const cpfNormalized = cpf.replace(/\D/g, '');
 
+    // IMPORTANTE: Marcar sessão como modificada para forçar envio do cookie
+    // @ts-ignore
+    req.session.initialized = true;
+
     // Carregar perguntas secretas do arquivo
     const userSecrets = await loadSecretsByCPF(cpfNormalized);
 
@@ -69,10 +73,18 @@ export const initRecovery = async (
       sessionId: req.sessionID,
     });
 
-    res.json({
-      success: true,
-      message: 'Perguntas enviadas',
-      questions: sanitizedQuestions,
+    // IMPORTANTE: Forçar save da sessão para garantir que o cookie seja enviado
+    req.session.save((err: any) => {
+      if (err) {
+        logger.error('Erro ao salvar sessão', { error: err.message });
+        return next(err);
+      }
+
+      res.json({
+        success: true,
+        message: 'Perguntas enviadas',
+        questions: sanitizedQuestions,
+      });
     });
   } catch (error: any) {
     logger.error('Erro ao iniciar recuperação', { error: error.message });

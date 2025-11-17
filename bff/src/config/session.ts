@@ -20,7 +20,8 @@ export const sessionConfig = session({
     httpOnly: true, // Não acessível via JavaScript
     maxAge: parseInt(process.env.SESSION_MAX_AGE || '900000', 10), // 15 minutos
     sameSite: 'lax', // Permite cookies em navegação cross-site (localhost:3000 -> localhost:4000)
-    domain: process.env.COOKIE_DOMAIN || undefined,
+    // Removido domain para permitir que o navegador defina automaticamente
+    // Em localhost, definir domain explicitamente pode causar problemas entre portas
   },
 
   name: 'sessionId', // Nome customizado (não 'connect.sid')
